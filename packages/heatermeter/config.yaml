@@ -1,6 +1,6 @@
 config:
   heatermeter:
-    api_key: f324bcfe362cc4aad520a60c8511255a
+    api_key: <YOUR API KEY>
     host: http://heatermeter.local
     port: 80
     scan_interval: 5
