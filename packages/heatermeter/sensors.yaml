@@ -1,0 +1,79 @@
+rest:
+  resource: http://heatermeter.local/luci/lm/api/status
+  scan_interval: 5
+  sensor:
+    - name: Heater meter - Timestamp
+      value_template: "{{ value_json.time | timestamp_local }}"
+      device_class: timestamp
+    - name: Heater meter - Setpoint
+      value_template: "{{ value_json.set | round(1) }}"
+      device_class: temperature
+      unit_of_measurement: '°C'
+    - name: Heater meter - Lid
+      value_template: "{{ value_json.lid }}"
+    - name: Heater meter - Fan
+      value_template: "{{ value_json.fan.c }}"
+
+    - name: Heater meter - Pit Temperature
+      unique_id: probe0_temperature
+      value_template: "{{ value_json.temps[0].c }}"
+      device_class: temperature
+      unit_of_measurement: '°C'
+    - name: Heater meter - Pit High
+      unique_id: probe0_hi
+      value_template: "{{ value_json.temps[0].a.h }}"
+      device_class: temperature
+      unit_of_measurement: '°C'
+    - name: Heater meter - Pit Low
+      unique_id: probe0_lo
+      value_template: "{{ value_json.temps[0].a.l }}"
+      device_class: temperature
+      unit_of_measurement: '°C'
+
+    - name: Heater meter - Probe 1 Temperature
+      unique_id: probe1_temperature
+      value_template: "{{ value_json.temps[1].c }}"
+      device_class: temperature
+      unit_of_measurement: '°C'
+    - name: Heater meter - Probe 1 High
+      unique_id: probe1_hi
+      value_template: "{{ value_json.temps[1].a.h }}"
+      device_class: temperature
+      unit_of_measurement: '°C'
+    - name: Heater meter - Probe 1 Low
+      unique_id: probe1_lo
+      value_template: "{{ value_json.temps[1].a.l }}"
+      device_class: temperature
+      unit_of_measurement: '°C'
+
+    - name: Heater meter - Probe 2 Temperature
+      unique_id: probe2_temperature
+      value_template: "{{ value_json.temps[2].c }}"
+      device_class: temperature
+      unit_of_measurement: '°C'
+    - name: Heater meter - Probe 2 High
+      unique_id: probe2_hi
+      value_template: "{{ value_json.temps[2].a.h }}"
+      device_class: temperature
+      unit_of_measurement: '°C'
+    - name: Heater meter - Probe 2 Low
+      unique_id: probe2_lo
+      value_template: "{{ value_json.temps[2].a.l }}"
+      device_class: temperature
+      unit_of_measurement: '°C'
+
+    - name: Heater meter - Probe 3 Temperature
+      unique_id: prob3_temperature
+      value_template: "{{ value_json.temps[3].c }}"
+      device_class: temperature
+      unit_of_measurement: '°C'
+    - name: Heater meter - Probe 3 High
+      unique_id: probe3_hi
+      value_template: "{{ value_json.temps[3].a.h }}"
+      device_class: temperature
+      unit_of_measurement: '°C'
+    - name: Heater meter - Probe 3 Low
+      unique_id: probe3_lo
+      value_template: "{{ value_json.temps[3].a.l }}"
+      device_class: temperature
+      unit_of_measurement: '°C'

@@ -1,0 +1,47 @@
+rest_command:
+  heater_meter_probe0_name:
+    url: "http://heatermeter.local/luci/lm/api/config"
+    method: post
+    content_type: "application/x-www-form-urlencoded"
+    payload: "&pn0={{name | urlencode}} &apikey={{api_key | urlencode}}"
+
+  heater_meter_probe1_name:
+    url: "http://heatermeter.local/luci/lm/api/config"
+    method: post
+    content_type: "application/x-www-form-urlencoded"
+    payload: "&pn1={{name | urlencode}} &apikey={{api_key | urlencode}}"
+
+  heater_meter_probe2_name:
+    url: "http://heatermeter.local/luci/lm/api/config"
+    method: post
+    content_type: "application/x-www-form-urlencoded"
+    payload: "&pn2={{name | urlencode}} &apikey={{api_key | urlencode}}"
+
+  heater_meter_probe3_name:
+    url: "http://heatermeter.local/luci/lm/api/config"
+    method: post
+    content_type: "application/x-www-form-urlencoded"
+    payload: "&pn3={{name | urlencode}} &apikey={{api_key | urlencode}}"
+
+  heater_meter_setpoint:
+    url: "http://heatermeter.local/luci/lm/api/config"
+    method: post
+    content_type: "application/x-www-form-urlencoded"
+    payload: "&sp={{setpoint | int}} &apikey={{api_key | urlencode}}"
+
+## action: rest_command.heater_meter_alarms
+## data:
+##   'p0l': 65
+##   'p0h': 180
+##   'p1l': 30
+##   'p1h': 54
+##   'p2l': 40
+##   'p2h': 64
+##   'p3l': 50
+##   'p3h': 74
+##   'api_key' : 'f324bcfe362cc4aad520a60c8511255a'
+  heater_meter_alarms:
+    url: "http://heatermeter.local/luci/lm/api/config"
+    method: post
+    content_type: "application/x-www-form-urlencoded"
+    payload: "&al={{p0l | int}},{{p0h | int}},{{p1l | int}},{{p1h | int}},{{p2l | int}},{{p2h | int}},{{p3l | int}},{{p3h | int}} &apikey={{api_key | urlencode}}"

@@ -1,0 +1,89 @@
+config:
+  heatermeter:
+    api_key: f324bcfe362cc4aad520a60c8511255a
+    host: http://heatermeter.local
+    port: 80
+    scan_interval: 5
+
+input_number:
+  setpoint:
+    name: Setpoint
+    initial: 225
+    min:  100
+    max:  400
+    step: 1
+    mode: slider
+    unit_of_measurement: "°C"
+    icon: mdi:target
+  p0h:
+    name: Probe0 Hi
+    initial: 275
+    min: -400
+    max: 400
+    step: 1
+    mode: box
+    unit_of_measurement: "°C"
+    icon: mdi:target
+  p0l:
+    name: Probe0 Lo
+    initial: -200
+    min: -400
+    max: 400
+    step: 1
+    mode: box
+    unit_of_measurement: "°C"
+    icon: mdi:target
+  p1h:
+    name: Probe1 Hi
+    initial: -200
+    min: -400
+    max: 400
+    step: 1
+    mode: box
+    unit_of_measurement: "°C"
+    icon: mdi:target
+  p1l:
+    name: Probe1 Lo
+    initial: -1
+    min: -400
+    max: 400
+    step: 1
+    mode: box
+    unit_of_measurement: "°C"
+    icon: mdi:target
+  p2h:
+    name: Probe2 Hi
+    initial: -200
+    min: -400
+    max: 400
+    step: 1
+    mode: box
+    unit_of_measurement: "°C"
+    icon: mdi:target
+  p2l:
+    name: Probe2 Lo
+    initial: -1
+    min: -400
+    max: 400
+    step: 1
+    mode: box
+    unit_of_measurement: "°C"
+    icon: mdi:target
+  p3h:
+    name: Probe3 Hi
+    initial: -200
+    min: -400
+    max: 400
+    step: 1
+    mode: box
+    unit_of_measurement: "°C"
+    icon: mdi:target
+  p3l:
+    name: Probe3 Lo
+    initial: -1
+    min: -400
+    max: 400
+    step: 1
+    mode: box
+    unit_of_measurement: "°C"
+    icon: mdi:target
