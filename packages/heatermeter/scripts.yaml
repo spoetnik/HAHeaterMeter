@@ -2,46 +2,46 @@ script:
   heatermeter_change_set_point:
     alias: HeaterMeter Change Set Point
     icon: mdi:target
-    mode: single
     sequence:
-    - data_template:
-        temperature: '{{ states.input_number.setpoint.state|int(225) }}'
-      service: rest_command.heater_meter_setpoint
+    - service: rest_command.heater_meter_setpoint
+      data:
+        setpoint: '{{ states.input_number.setpoint.state|int(225) }}'
+        api_key: '{{ states.input_text.api_key.state }}'
 
   update_heatermeter_input_numbers:
     alias: Update HeaterMeter Input Numbers
     sequence:
     - service: input_number.set_value
-      data_template:
-        value: '{{ states("heatermeter.p0h") | int(-1) }}'
+      data:
+        value: '{{ states.sensor.heater_meter_probe_0_high.state | int(-1) }}'
       entity_id: input_number.p0h
     - service: input_number.set_value
-      data_template:
-        value: '{{ states("heatermeter.p0l") | int(-1) }}'
+      data:
+        value: '{{ states.sensor.heater_meter_probe_0_low.state | int(-1) }}'
       entity_id: input_number.p0l
     - service: input_number.set_value
-      data_template:
-        value: '{{ states("heatermeter.p1h") | int(-1) }}'
+      data:
+        value: '{{ states.sensor.heater_meter_probe_1_high.state | int(-1) }}'
       entity_id: input_number.p1h
     - service: input_number.set_value
-      data_template:
-        value: '{{ states("heatermeter.p1l") | int(-1) }}'
+      data:
+        value: '{{ states.sensor.heater_meter_probe_1_low.state | int(-1) }}'
       entity_id: input_number.p1l
     - service: input_number.set_value
-      data_template:
-        value: '{{ states("heatermeter.p2h") | int(-1) }}'
+      data:
+        value: '{{ states.sensor.heater_meter_probe_2_high.state | int(-1) }}'
       entity_id: input_number.p2h
     - service: input_number.set_value
-      data_template:
-        value: '{{ states("heatermeter.p2l") | int(-1) }}'
+      data:
+        value: '{{ states.sensor.heater_meter_probe_2_low.state | int(-1) }}'
       entity_id: input_number.p2l
     - service: input_number.set_value
-      data_template:
-        value: '{{ states("heatermeter.p3h") | int(-1) }}'
+      data:
+        value: '{{ states.sensor.heater_meter_probe_3_high.state | int(-1) }}'
       entity_id: input_number.p3h
     - service: input_number.set_value
-      data_template:
-        value: '{{ states("heatermeter.p3l") | int(-1) }}'
+      data:
+        value: '{{ states.sensor.heater_meter_probe_3_low.state | int(-1) }}'
       entity_id: input_number.p3l
     mode: single
 
@@ -49,6 +49,13 @@ script:
     alias: HeaterMeter Set Alarms
     sequence:
     - service: rest_command.heater_meter_alarms
-      data_template:
-        alarms: '{{ states("input_number.p0l") }},{{ states("input_number.p0h") }},{{ states("input_number.p1l") }},{{ states("input_number.p1h") }}",{{ states("input_number.p2l") }},{{ states("input_number.p2hl") }},{{ states("input_number.p3l") }},{{ states("input_number.p3h") }}'
-    mode: single
+      data:
+        'p0l': '{{ states.input_number.p0l.state }}'
+        'p0h': '{{ states.input_number.p0h.state }}'
+        'p1l': '{{ states.input_number.p1l.state }}'
+        'p1h': '{{ states.input_number.p1h.state }}'
+        'p2l': '{{ states.input_number.p2l.state }}'
+        'p2h': '{{ states.input_number.p2h.state }}'
+        'p3l': '{{ states.input_number.p3l.state }}'
+        'p3h': '{{ states.input_number.p3h.state }}'
+        'api_key' : '{{ states.input_text.api_key.state }}'

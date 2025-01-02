@@ -1,5 +1,5 @@
 rest:
-  resource: http://heatermeter.local/luci/lm/api/status
+  resource_template: http://{{ states("input_text.host") }}/luci/lm/api/status
   scan_interval: 5
   sensor:
     - name: Heater meter - Timestamp
@@ -9,10 +9,28 @@ rest:
       value_template: "{{ value_json.set | round(1) }}"
       device_class: temperature
       unit_of_measurement: '°C'
-    - name: Heater meter - Lid
-      value_template: "{{ value_json.lid }}"
     - name: Heater meter - Fan
       value_template: "{{ value_json.fan.c }}"
+    - name: Heater meter - Lid
+      value_template: >-
+        {%- if value_json.lid == 0 -%}
+          Closed
+        {%- else -%}
+          Open
+        {%- endif -%}
+    - name: Heater meter - Alarm
+      value_template: >-
+        {%- if value_json.temps[0].a.r != None -%}
+          ON
+        {%- elif value_json.temps[1].a.r != None -%}
+          ON
+        {%- elif value_json.temps[2].a.r != None -%}
+          ON
+        {%- elif value_json.temps[3].a.r != None -%}
+          ON
+          {%- else -%}
+          OFF
+        {%- endif -%}
 
     - name: Heater meter - Pit Temperature
       unique_id: probe0_temperature

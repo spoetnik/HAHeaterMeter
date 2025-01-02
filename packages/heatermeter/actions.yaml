@@ -1,33 +1,10 @@
 rest_command:
-  heater_meter_probe0_name:
-    url: "http://heatermeter.local/luci/lm/api/config"
-    method: post
-    content_type: "application/x-www-form-urlencoded"
-    payload: "&pn0={{name | urlencode}} &apikey={{api_key | urlencode}}"
-
-  heater_meter_probe1_name:
-    url: "http://heatermeter.local/luci/lm/api/config"
-    method: post
-    content_type: "application/x-www-form-urlencoded"
-    payload: "&pn1={{name | urlencode}} &apikey={{api_key | urlencode}}"
-
-  heater_meter_probe2_name:
-    url: "http://heatermeter.local/luci/lm/api/config"
-    method: post
-    content_type: "application/x-www-form-urlencoded"
-    payload: "&pn2={{name | urlencode}} &apikey={{api_key | urlencode}}"
-
-  heater_meter_probe3_name:
-    url: "http://heatermeter.local/luci/lm/api/config"
-    method: post
-    content_type: "application/x-www-form-urlencoded"
-    payload: "&pn3={{name | urlencode}} &apikey={{api_key | urlencode}}"
 
   heater_meter_setpoint:
-    url: "http://heatermeter.local/luci/lm/api/config"
+    url: "http://{{ states('input_text.host') }}/luci/lm/api/config/sp?apikey={{api_key | urlencode}}"
     method: post
     content_type: "application/x-www-form-urlencoded"
-    payload: "&sp={{setpoint | int}} &apikey={{api_key | urlencode}}"
+    payload: "value={{setpoint | int}}"
 
 ## action: rest_command.heater_meter_alarms
 ## data:
@@ -39,9 +16,9 @@ rest_command:
 ##   'p2h': 64
 ##   'p3l': 50
 ##   'p3h': 74
-##   'api_key' : 'f324bcfe362cc4aad520a60c8511255a'
+##   'api_key' : 'a49ba37d51ed7df6c29e60066733db02'
   heater_meter_alarms:
-    url: "http://heatermeter.local/luci/lm/api/config"
+    url: "http://{{ states('input_text.host') }}/luci/lm/api/config/al?apikey={{api_key | urlencode}}"
     method: post
     content_type: "application/x-www-form-urlencoded"
-    payload: "&al={{p0l | int}},{{p0h | int}},{{p1l | int}},{{p1h | int}},{{p2l | int}},{{p2h | int}},{{p3l | int}},{{p3h | int}} &apikey={{api_key | urlencode}}"
+    payload: "value={{p0l | int}},{{p0h | int}},{{p1l | int}},{{p1h | int}},{{p2l | int}},{{p2h | int}},{{p3l | int}},{{p3h | int}}"

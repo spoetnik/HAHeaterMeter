@@ -1,72 +1,104 @@
 icon: mdi:grill
-path: heater-meter
 title: Heater Meter
-cards:
-  - entities:
-      - entity: input_number.setpoint
-        name: "New Set Point:"
-      - action_name: Set
-        icon: mdi:blank
-        name: " "
-        service: script.heatermeter_change_set_point
-        type: call-service
-    title: Change Set Point
-    type: entities
-  - entities:
-      - entity: sensor.heater_meter_setpoint
-      - entity: sensor.heater_meter_lid
-      - entity: sensor.heater_meter_fan
-      - entity: sensor.heater_meter_pit_temperature
-      - entity: sensor.heater_meter_probe_1_temperature
-        name: Food-1 Temperature
-      - entity: sensor.heater_meter_probe_2_temperature
-        name: Food-2 Temperature
-      - entity: sensor.heater_meter_probe_3_temperature
-        name: Ambient Temperature
-      - entity: heatermeter.alarm
-    show_header_toggle: false
-    title: Smoker
-    type: entities
-  - entities:
-      - entity: sensor.heater_meter_setpoint
-      - entity: sensor.heater_meter_pit_temperature
-      - entity: sensor.heater_meter_probe_1_temperature
-      - entity: sensor.heater_meter_probe_2_temperature
-      - entity: sensor.heater_meter_probe_3_temperature
-      - entity: sensor.heater_meter_fan
-    hours_to_show: 18
-    refresh_interval: 10
-    type: history-graph
-  - entities:
-      - type: section
-        label: Pit
-      - entity: input_number.p0h
-        name: "Hi:"
-      - entity: input_number.p0l
-        name: "Lo:"
-      - type: section
-        label: Food-1
-      - entity: sensor.heater_meter_probe_1_high
-        name: "Hi:"
-      - entity: sensor.heater_meter_probe_1_low
-        name: "Lo:"
-      - type: section
-        label: Food-2
-      - entity: sensor.heater_meter_probe_2_high
-        name: "Hi:"
-      - entity: sensor.heater_meter_probe_2_low
-        name: "Lo:"
-      - type: section
-        label: Ambient
-      - entity: sensor.heater_meter_probe_3_high
-        name: "Hi:"
-      - entity: sensor.heater_meter_probe_3_low
-        name: "Lo:"
-      - type: section
-      - action_name: Set
-        icon: mdi:blank
-        name: " "
-        service: script.heatermeter_set_alarms
-        type: call-service
-    title: Alarms
-    type: entities
+cards: []
+type: sections
+sections:
+  - type: grid
+    cards:
+      - entities:
+          - entity: sensor.heater_meter_setpoint
+          - entity: sensor.heater_meter_pit_temperature
+          - entity: sensor.heater_meter_probe_1_temperature
+          - entity: sensor.heater_meter_probe_2_temperature
+          - entity: sensor.heater_meter_probe_3_temperature
+          - entity: sensor.heater_meter_fan
+        hours_to_show: 18
+        refresh_interval: 10
+        type: history-graph
+        grid_options:
+          columns: full
+    column_span: 4
+  - type: grid
+    cards:
+      - entities:
+          - entity: sensor.heater_meter_setpoint
+          - entity: sensor.heater_meter_lid
+          - entity: sensor.heater_meter_fan
+          - entity: sensor.heater_meter_pit_temperature
+          - entity: sensor.heater_meter_probe_1_temperature
+            name: Food-1 Temperature
+          - entity: sensor.heater_meter_probe_2_temperature
+            name: Food-2 Temperature
+          - entity: sensor.heater_meter_probe_3_temperature
+            name: Food-3 Temperature
+          - entity: sensor.heater_meter_alarm
+        show_header_toggle: false
+        title: Smoker
+        type: entities
+        grid_options:
+          columns: 12
+          rows: 7
+      - entities:
+          - type: section
+            label: Pit temperature
+          - entity: input_number.p0h
+            name: "Hi:"
+          - entity: input_number.p0l
+            name: "Lo:"
+          - type: section
+            label: Food-1
+          - entity: input_number.p1h
+            name: "Hi:"
+          - entity: input_number.p1l
+            name: "Lo:"
+          - type: section
+            label: Food-2
+          - entity: input_number.p2h
+            name: "Hi:"
+          - entity: input_number.p2l
+            name: "Lo:"
+          - type: section
+            label: Food-3
+          - entity: input_number.p3h
+            name: "Hi:"
+          - entity: input_number.p3l
+            name: "Lo:"
+          - type: section
+          - action_name: Set
+            icon: mdi:blank
+            name: " "
+            service: script.heatermeter_set_alarms
+            type: call-service
+        title: Alarms
+        type: entities
+        grid_options:
+          columns: 12
+          rows: 13
+      - entities:
+          - entity: input_number.setpoint
+            name: "New Set Point:"
+          - action_name: Set
+            icon: mdi:blank
+            name: " "
+            service: script.heatermeter_change_set_point
+            type: call-service
+        title: Change Set Point
+        type: entities
+        grid_options:
+          columns: 12
+          rows: 3
+      - entities:
+          - entity: input_text.host
+            name: "Heatermeter hostname of IP-address:"
+            icon: mdi:server
+          - entity: input_text.api_key
+            name: Heatermeter API key
+            icon: mdi:key
+        title: Configuration
+        type: entities
+        grid_options:
+          columns: 12
+          rows: 4
+    column_span: 4
+max_columns: 4
+dense_section_placement: true
