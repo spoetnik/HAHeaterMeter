@@ -7,14 +7,15 @@ input_number:
     mode: box
     unit_of_measurement: "°C"
     icon: mdi:target
-  p0h: &alarm
+  p0h:
+    <<: &alarm
+      min: -400
+      max: 400
+      step: 1
+      mode: box
+      unit_of_measurement: "°C"
+      icon: mdi:target
     name: Probe0 Hi
-    min: -400
-    max: 400
-    step: 1
-    mode: box
-    unit_of_measurement: "°C"
-    icon: mdi:target
   p0l:
     <<: *alarm
     name: Probe0 Lo
