@@ -27,10 +27,22 @@ sections:
           - entity: sensor.heater_meter_pit_temperature
           - entity: sensor.heater_meter_probe_1_temperature
             name: Food-1 Temperature
-          - entity: sensor.heater_meter_probe_2_temperature
-            name: Food-2 Temperature
-          - entity: sensor.heater_meter_probe_3_temperature
-            name: Food-3 Temperature
+          - type: conditional
+            conditions: &probe2
+              - condition: state
+                entity: sensor.heater_meter_probe_2_temperature
+                state_not: unavailable
+            row:
+              entity: sensor.heater_meter_probe_2_temperature
+              name: Food-2 Temperature
+          - type: conditional
+            conditions: &probe3
+              - condition: state
+                entity: sensor.heater_meter_probe_3_temperature
+                state_not: unavailable
+            row:
+              entity: sensor.heater_meter_probe_3_temperature
+              name: Food-3 Temperature
           - entity: sensor.heater_meter_alarm
         show_header_toggle: false
         title: Smoker
@@ -51,18 +63,36 @@ sections:
             name: "Hi:"
           - entity: input_number.p1l
             name: "Lo:"
-          - type: section
-            label: Food-2
-          - entity: input_number.p2h
-            name: "Hi:"
-          - entity: input_number.p2l
-            name: "Lo:"
-          - type: section
-            label: Food-3
-          - entity: input_number.p3h
-            name: "Hi:"
-          - entity: input_number.p3l
-            name: "Lo:"
+          - type: conditional
+            conditions: *probe2
+            row:
+              type: section
+              label: Food-2
+          - type: conditional
+            conditions: *probe2
+            row:
+              entity: input_number.p2h
+              name: "Hi:"
+          - type: conditional
+            conditions: *probe2
+            row:
+              entity: input_number.p2l
+              name: "Lo:"
+          - type: conditional
+            conditions: *probe3
+            row:
+              type: section
+              label: Food-3
+          - type: conditional
+            conditions: *probe3
+            row:
+              entity: input_number.p3h
+              name: "Hi:"
+          - type: conditional
+            conditions: *probe3
+            row:
+              entity: input_number.p3l
+              name: "Lo:"
           - type: section
           - action_name: Set
             icon: mdi:blank
