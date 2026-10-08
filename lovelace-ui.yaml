@@ -20,6 +20,24 @@ sections:
     column_span: 4
   - type: grid
     cards:
+      # ponytail: fixed low & slow zones; a gauge that follows the setpoint needs a custom card
+      - type: gauge
+        entity: sensor.heater_meter_pit_temperature
+        name: Pit
+        min: 0
+        max: 300
+        needle: true
+        segments:
+          - from: 0
+            color: "#3b82f6"
+          - from: 100
+            color: "#22c55e"
+          - from: 150
+            color: "#f59e0b"
+          - from: 200
+            color: "#ef4444"
+        grid_options:
+          columns: 12
       - entities:
           - entity: sensor.heater_meter_setpoint
           - entity: sensor.heater_meter_lid
