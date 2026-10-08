@@ -13,11 +13,11 @@ script:
     sequence:
     - service: input_number.set_value
       data:
-        value: '{{ states.sensor.heater_meter_probe_0_high.state | int(-1) }}'
+        value: '{{ states.sensor.heater_meter_pit_high.state | int(-1) }}'
       entity_id: input_number.p0h
     - service: input_number.set_value
       data:
-        value: '{{ states.sensor.heater_meter_probe_0_low.state | int(-1) }}'
+        value: '{{ states.sensor.heater_meter_pit_low.state | int(-1) }}'
       entity_id: input_number.p0l
     - service: input_number.set_value
       data:
@@ -59,3 +59,17 @@ script:
         'p3l': '{{ states.input_number.p3l.state }}'
         'p3h': '{{ states.input_number.p3h.state }}'
         'api_key' : '{{ states.input_text.api_key.state }}'
+
+automation:
+  - alias: HeaterMeter Sync Alarm Inputs
+    trigger:
+    - platform: homeassistant
+      event: start
+    - platform: state
+      entity_id: sensor.heater_meter_pit_high
+      from: unavailable
+    condition:
+    - condition: template
+      value_template: "{{ has_value('sensor.heater_meter_pit_high') }}"
+    action:
+    - service: script.update_heatermeter_input_numbers
