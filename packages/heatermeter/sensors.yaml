@@ -19,18 +19,7 @@ rest:
           Open
         {%- endif -%}
     - name: Heater meter - Alarm
-      value_template: >-
-        {%- if value_json.temps[0].a.r != None -%}
-          ON
-        {%- elif value_json.temps[1].a.r != None -%}
-          ON
-        {%- elif value_json.temps[2].a.r != None -%}
-          ON
-        {%- elif value_json.temps[3].a.r != None -%}
-          ON
-          {%- else -%}
-          OFF
-        {%- endif -%}
+      value_template: "{{ 'ON' if value_json.temps | selectattr('a.r') | list else 'OFF' }}"
 
     - name: Heater meter - Pit Temperature
       unique_id: probe0_temperature
