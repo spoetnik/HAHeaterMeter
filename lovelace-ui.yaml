@@ -139,6 +139,12 @@ sections:
             icon: mdi:key
         title: Configuration
         type: entities
+        # Shows the API key in plain text. To show this card to admins only, uncomment and
+        # fill in your user ID (Settings > People > Users, with advanced mode on):
+        # visibility:
+        #   - condition: user
+        #     users:
+        #       - <admin-user-id>
         grid_options:
           columns: 12
           rows: 4
