@@ -68,6 +68,40 @@ sections:
         grid_options:
           columns: 12
           rows: 7
+      - type: glance
+        title: Alarms on HeaterMeter
+        columns: 4
+        entities:
+          - entity: sensor.heater_meter_pit_high
+            name: Pit Hi
+          - entity: sensor.heater_meter_pit_low
+            name: Pit Lo
+          - entity: sensor.heater_meter_probe_1_high
+            name: Food-1 Hi
+          - entity: sensor.heater_meter_probe_1_low
+            name: Food-1 Lo
+        grid_options:
+          columns: 12
+      - type: glance
+        columns: 4
+        entities:
+          - entity: sensor.heater_meter_probe_2_high
+            name: Food-2 Hi
+          - entity: sensor.heater_meter_probe_2_low
+            name: Food-2 Lo
+        visibility: *probe2
+        grid_options:
+          columns: 12
+      - type: glance
+        columns: 4
+        entities:
+          - entity: sensor.heater_meter_probe_3_high
+            name: Food-3 Hi
+          - entity: sensor.heater_meter_probe_3_low
+            name: Food-3 Lo
+        visibility: *probe3
+        grid_options:
+          columns: 12
       - entities:
           - type: section
             label: Pit temperature
