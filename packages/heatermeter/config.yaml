@@ -7,7 +7,7 @@ input_number:
     mode: box
     unit_of_measurement: "°C"
     icon: mdi:target
-  p0h:
+  p0h: &alarm
     name: Probe0 Hi
     min: -400
     max: 400
@@ -16,61 +16,26 @@ input_number:
     unit_of_measurement: "°C"
     icon: mdi:target
   p0l:
+    <<: *alarm
     name: Probe0 Lo
-    min: -400
-    max: 400
-    step: 1
-    mode: box
-    unit_of_measurement: "°C"
-    icon: mdi:target
   p1h:
+    <<: *alarm
     name: Probe1 Hi
-    min: -400
-    max: 400
-    step: 1
-    mode: box
-    unit_of_measurement: "°C"
-    icon: mdi:target
   p1l:
+    <<: *alarm
     name: Probe1 Lo
-    min: -400
-    max: 400
-    step: 1
-    mode: box
-    unit_of_measurement: "°C"
-    icon: mdi:target
   p2h:
+    <<: *alarm
     name: Probe2 Hi
-    min: -400
-    max: 400
-    step: 1
-    mode: box
-    unit_of_measurement: "°C"
-    icon: mdi:target
   p2l:
+    <<: *alarm
     name: Probe2 Lo
-    min: -400
-    max: 400
-    step: 1
-    mode: box
-    unit_of_measurement: "°C"
-    icon: mdi:target
   p3h:
+    <<: *alarm
     name: Probe3 Hi
-    min: -400
-    max: 400
-    step: 1
-    mode: box
-    unit_of_measurement: "°C"
-    icon: mdi:target
   p3l:
+    <<: *alarm
     name: Probe3 Lo
-    min: -400
-    max: 400
-    step: 1
-    mode: box
-    unit_of_measurement: "°C"
-    icon: mdi:target
 
 input_text:
   api_key:
