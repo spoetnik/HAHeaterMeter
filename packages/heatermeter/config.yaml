@@ -84,9 +84,7 @@ input_number:
 input_text:
   api_key:
     name: Heatermeter API Key
-    initial: 111111111111
     icon: mdi:key
   host:
     name: Heatermeter Host
-    initial: heatermeter.local
     icon: mdi:uri
