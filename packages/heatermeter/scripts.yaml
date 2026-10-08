@@ -67,7 +67,6 @@ automation:
       event: start
     - platform: state
       entity_id: sensor.heater_meter_pit_high
-      from: unavailable
     condition:
     - condition: template
       value_template: "{{ has_value('sensor.heater_meter_pit_high') }}"
