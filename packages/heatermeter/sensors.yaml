@@ -1,5 +1,6 @@
 rest:
-  resource_template: http://{{ states("input_text.host") }}/luci/lm/api/status
+  # input_text.host may not be restored yet when the rest platform loads
+  resource_template: http://{{ states('input_text.host') if has_value('input_text.host') else 'heatermeter.local' }}/luci/lm/api/status
   scan_interval: 30
   sensor:
     - name: Heater meter - Timestamp
