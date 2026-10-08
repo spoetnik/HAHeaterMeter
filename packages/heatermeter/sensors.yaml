@@ -1,6 +1,6 @@
 rest:
   resource_template: http://{{ states("input_text.host") }}/luci/lm/api/status
-  scan_interval: 5
+  scan_interval: 30
   sensor:
     - name: Heater meter - Timestamp
       value_template: "{{ value_json.time | timestamp_local }}"
