@@ -12,6 +12,7 @@ rest:
       unit_of_measurement: '°C'
     - name: Heater meter - Fan
       value_template: "{{ value_json.fan.c }}"
+      unit_of_measurement: '%'
     - name: Heater meter - Lid
       value_template: >-
         {%- if value_json.lid == 0 -%}
