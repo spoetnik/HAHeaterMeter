@@ -16,7 +16,7 @@ rest_command:
 ##   'p2h': 64
 ##   'p3l': 50
 ##   'p3h': 74
-##   'api_key' : 'a49ba37d51ed7df6c29e60066733db02'
+##   'api_key' : '<api_key>'
   heater_meter_alarms:
     url: "http://{{ states('input_text.host') }}/luci/lm/api/config/al?apikey={{api_key | urlencode}}"
     method: post
