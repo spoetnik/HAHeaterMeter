@@ -107,16 +107,11 @@ sections:
       - entities:
           - entity: input_number.setpoint
             name: "New Set Point:"
-          - action_name: Set
-            icon: mdi:blank
-            name: " "
-            service: script.heatermeter_change_set_point
-            type: call-service
         title: Change Set Point
         type: entities
         grid_options:
           columns: 12
-          rows: 3
+          rows: 2
       - entities:
           - entity: input_text.host
             name: "Heatermeter hostname of IP-address:"

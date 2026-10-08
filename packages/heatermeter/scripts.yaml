@@ -72,3 +72,14 @@ automation:
       value_template: "{{ has_value('sensor.heater_meter_pit_high') }}"
     action:
     - service: script.update_heatermeter_input_numbers
+
+  - alias: HeaterMeter Send Set Point
+    trigger:
+    - platform: state
+      entity_id: input_number.setpoint
+    condition:
+    # skip the restore at startup, which would overwrite a setpoint changed on the device
+    - condition: template
+      value_template: "{{ trigger.from_state is not none and trigger.from_state.state not in ['unknown', 'unavailable'] }}"
+    action:
+    - service: script.heatermeter_change_set_point
